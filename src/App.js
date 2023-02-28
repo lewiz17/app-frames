@@ -7,30 +7,31 @@ const client = axios.create({
 });
 
 const App = () => {
-	const [title, setTitle] = useState('');
-	const [body, setBody] = useState('');
-	const [posts, setPosts] = useState([]);
+	const [target, setTarget] = useState('');
+	const [iframe, setIframe] = useState('');
+	const [disable, setDisable] = useState(false);
+	const [items, setItems] = useState([]);
 
 	// GET with Axios
 	useEffect(() => {
-		const fetchPost = async () => {
+		const fetchItems = async () => {
 			try {
 				let response = await client.get('?_limit=10');
-				setPosts(response.data);
+				setItems(response.data);
 			} catch (error) {
 				console.log(error);
 			}
 		};
-		fetchPost();
+		fetchItems();
 	}, []);
 
 	// DELETE with Axios
-	const deletePost = async (id) => {
+	const deleteItem = async (id) => {
 		try {
 			await client.delete(`${id}`);
-			setPosts(
-				posts.filter((post) => {
-					return post.id !== id;
+			setItems(
+				items.filter((item) => {
+					return item.id !== id;
 				})
 			);
 		} catch (error) {
@@ -41,19 +42,21 @@ const App = () => {
 	// handle form submission
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		addPosts(title, body);
+		addItems(target, iframe, disable);
 	};
 
 	// POST with Axios
-	const addPosts = async (title, body) => {
+	const addItems = async (target, iframe, disable) => {
 		try {
 			let response = await client.post('', {
-				title: title,
-				body: body,
+				target_url: target,
+				iframe_url: iframe,
+				disable: disable
 			});
-			setPosts([response.data, ...posts]);
-			setTitle('');
-			setBody('');
+			setItems([response.data, ...items]);
+			setTarget('');
+			setIframe('');
+			setDisable(false);
 		} catch (error) {
 			console.log(error);
 		}
@@ -62,26 +65,26 @@ const App = () => {
 	return (
 		<div className="app">
 			<nav>
-				<h1>POSTS APP</h1>
+				<h1>URLS IFRAME APP</h1>
 			</nav>
 			<div className="add-post-container">
 				<form onSubmit={handleSubmit}>
 					<input
 						type="url"
 						className="form-control"
-						value={target_url}
+						value={target}
 						onChange={(e) => setTarget(e.target.value)}
 					/>
 					<input
 						type="text"
 						className="form-control"
-						value={iframe_url}
+						value={iframe}
 						onChange={(e) => setIframe(e.target.value)}
 					/>
 					<input
 						type="checkbox"
 						className="form-control"
-						value={disabled}
+						value={disable}
 						onChange={(e) => setDisable(e.target.value)}
 					/>
 					<button type="submit">Add Iframe</button>
@@ -89,13 +92,14 @@ const App = () => {
 			</div>
 			<div className="posts-container">
 				<h2>All Urls</h2>
-				{posts.map((post) => {
+				{items.map((item) => {
 					return (
-						<div className="post-card" key={post.id}>
-							<h2 className="post-title">{post.title}</h2>
-							<p className="post-body">{post.body}</p>
+						<div className="post-card" key={item.id}>
+							<h2 className="post-title">{item.target_url}</h2>
+							<p className="post-body">{item.iframe_url}</p>
+							<p className="post-body">Running: {item.disable === true ? 'No': 'Yes'}</p>
 							<div className="button">
-								<div className="delete-btn" onClick={() => deletePost(post.id)}>
+								<div className="delete-btn" onClick={() => deleteItem(item.id)}>
 									Delete
 								</div>
 							</div>
