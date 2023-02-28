@@ -85,7 +85,7 @@ const App = () => {
 						type="checkbox"
 						className="form-control"
 						value={disable}
-						onChange={(e) => setDisable(e.target.value)}
+						onChange={(e) => setDisable(!disable)}
 					/>
 					<button type="submit">Add Iframe</button>
 				</form>
