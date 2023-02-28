@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const client = axios.create({
-	baseURL: 'https://jsonplaceholder.typicode.com/posts',
+	baseURL: 'https://url-service-0ds1.onrender.com/items',
 });
 
 const App = () => {
@@ -67,25 +67,28 @@ const App = () => {
 			<div className="add-post-container">
 				<form onSubmit={handleSubmit}>
 					<input
+						type="url"
+						className="form-control"
+						value={target_url}
+						onChange={(e) => setTarget(e.target.value)}
+					/>
+					<input
 						type="text"
 						className="form-control"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
+						value={iframe_url}
+						onChange={(e) => setIframe(e.target.value)}
 					/>
-					<textarea
-						name=""
+					<input
+						type="checkbox"
 						className="form-control"
-						id=""
-						cols="10"
-						rows="8"
-						value={body}
-						onChange={(e) => setBody(e.target.value)}
-					></textarea>
-					<button type="submit">Add Post</button>
+						value={disabled}
+						onChange={(e) => setDisable(e.target.value)}
+					/>
+					<button type="submit">Add Iframe</button>
 				</form>
 			</div>
 			<div className="posts-container">
-				<h2>All Posts 📫</h2>
+				<h2>All Urls</h2>
 				{posts.map((post) => {
 					return (
 						<div className="post-card" key={post.id}>
