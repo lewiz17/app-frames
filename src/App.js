@@ -97,6 +97,7 @@ const App = () => {
 						<div className="post-card" key={item.id}>
 							<h2 className="post-title">{item.target_url}</h2>
 							<p className="post-body">{item.iframe_url}</p>
+							<p className="post-body">{item.description}</p>
 							<p className="post-body">Running: {item.disable === true ? 'No': 'Yes'}</p>
 							<div className="button">
 								<div className="delete-btn" onClick={() => deleteItem(item.id)}>
