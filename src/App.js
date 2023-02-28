@@ -98,7 +98,11 @@ const App = () => {
 							<h2 className="post-title">{item.target_url}</h2>
 							<p className="post-body">{item.iframe_url}</p>
 							<p className="post-body">{item.description}</p>
-							<p className="post-body">Running: {item.disable === true ? '<span className="running off">No</span>': '<span className="running">Yes</span>'}</p>
+							<p className="post-body">Running: {
+								item.disable === true ? 
+								(<span className="running off">No</span>) : 
+								(<span className="running">Yes</span>)
+							}</p>
 							<div className="button">
 								<div className="delete-btn" onClick={() => deleteItem(item.id)}>
 									Delete
