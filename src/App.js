@@ -9,7 +9,7 @@ const client = axios.create({
 const App = () => {
 	const [target, setTarget] = useState('');
 	const [iframe, setIframe] = useState('');
-	const [disable, setDisable] = useState(false);
+	const [disable, setDisable] = useState(true);
 	const [items, setItems] = useState([]);
 
 	// GET with Axios
@@ -56,7 +56,7 @@ const App = () => {
 			setItems([response.data, ...items]);
 			setTarget('');
 			setIframe('');
-			setDisable(false);
+			setDisable(true);
 		} catch (error) {
 			console.log(error);
 		}
@@ -84,7 +84,7 @@ const App = () => {
 					<input
 						type="checkbox"
 						className="form-control"
-						value={disable}
+						checked={!disable}
 						onChange={(e) => setDisable(!disable)}
 					/>
 					<button type="submit">Add Iframe</button>
