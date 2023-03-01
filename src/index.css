@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;1,300&display=swap");
 
 * {
 	margin: 0;
@@ -8,14 +8,13 @@
 
 body {
 	width: 100%;
-	background-color: #ddd;
-	font-family: 'Nunito', sans-serif;
+	font-family: "Nunito", sans-serif;
 	overflow: scroll;
 }
 
 .app {
 	margin: auto;
-	width: 40%;
+	width: 80%;
 }
 
 @media (max-width: 500px) {
@@ -30,46 +29,199 @@ nav {
 	padding: 30px 0;
 }
 
-form {
+h1{
 	display: flex;
-	flex-direction: column;
-	gap: 20px;
+    color: #3890f1;
+    font-size: 25px;
+}
+
+h1 sup{
+	font-size: 10px;
+}
+
+.form-control {
+	min-width: 20em;
+	border: 1px solid #444;
 }
 
 .form-control,
 button {
-	padding: 20px;
+	padding: 10px 20px;
 	border-radius: 5px;
+	min-height: 40px;
 }
 
 form button {
-	background-color: blue;
-	color: #fff;
-	border: none;
-	cursor: pointer;
+    background-color: #3a90f1;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
-.posts-container {
+.add-url-container {
+	display: flex;
+}
+
+.add-url-container form {
+	display: flex;
+	flex-flow: row;
+	gap: 20px;
+	width: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.add-url-container form span {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+.url-container {
 	margin-top: 50px;
 }
-
-.posts-container h2 {
-	margin: 15px 0;
-}
-
-.post-card {
-	background-color: #fff;
-	padding: 20px;
-	border-radius: 5px;
-	margin-bottom: 20px;
+.url-container h2{
+	margin:0;
+    background: #3990f1;
+    padding: 10px 20px;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 .delete-btn {
-	margin-top: 10px;
-	background-color: red;
+	background-color: #d12020;
 	color: #fff;
-	padding: 15px 40px;
+	padding: 10px 20px;
 	border-radius: 5px;
-	display: inline-block;
+	display: inline-flex;
 	cursor: pointer;
+	align-items: center;
+	gap: 5px;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 15px;
+}
+
+.url-item {
+	display: flex;
+	gap: 10px;
+	justify-content: space-between;
+	align-items: center;
+	position: relative;
+	margin: 1em 0;
+}
+.url-item .url-title{
+	padding: 10px 45px 10px 20px;
+}
+.url-item .url-body {
+	gap: 10px;
+}
+.url-item .url-title,
+.url-item .url-frame,
+.url-item .url-body {
+	display: flex;
+	align-items: center;
+	position: relative;
+	min-width: 250px;
+	margin: 0px;
+    font-size: 18px;
+    text-transform: none;
+	font-weight: normal;
+}
+.url-item .url-frame{
+	font-style: italic;
+	color: #999;
+}
+.url-item .url-title::before {
+	position: absolute;
+    content: "";
+    background: url("https://img.icons8.com/ios-filled/50/FFFFFF/chevron-right.png") 0px 0px no-repeat;
+    background-size: 100%;
+    width: 20px;
+    height: 20px;
+    right: 10px;
+}
+
+.url-item .url-body{
+	color: #999;
+}
+
+.running {
+	color: #00c144;
+	font-weight: bold;
+}
+.running.off{
+	color: #d12020;
+}
+
+.hold-check {
+    width: 100%;
+    position: relative;
+    display: inline-flex;
+}
+
+.hold-check label {
+	width: 50px;
+    height: 28px;
+    box-sizing: border-box;
+    border: 0;
+    background: #ddd;
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.hold-check input[type="checkbox"] {
+	display: none;
+}
+
+.hold-check input[type="checkbox"]:checked + label {
+	background: #00c144;
+}
+
+.hold-check input[type="checkbox"]:checked + label:before {
+	left: 20px;
+	box-shadow: 0px 1px 1px #444;
+}
+
+.hold-check label:before {
+	transition: 0.3s ease;
+	content: "";
+	width: 30px;
+	height: 30px;
+	position: absolute;
+	background: white;
+	left: -1px;
+	top: -2px;
+	box-sizing: border-box;
+	border: 1px solid #fbfbfb;
+	color: black;
+	border-radius: 100px;
+	box-shadow: 0px 1px 1px #444444;
+}
+.legend .help{
+	cursor: pointer;
+    font-weight: bold;
+    margin-bottom: 10px;
+    display: inline-block;
+}
+
+.legend p{
+	display: flex;
+    flex-flow: column;
+    box-shadow: 0px 1px 5px 0px #ddd;
+    border-radius: 20px;
+    padding: 20px;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.legend p em{
+	display: flex;
+	flex-flow: column;
+	text-transform: none;
+	color: #999;
 }
