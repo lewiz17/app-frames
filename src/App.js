@@ -142,8 +142,7 @@ const App = () => {
 				<p className="content-help">
 					valid url patterns:
 					<em>https://*.domain.com/*</em>
-					<em>https://domain.com</em>
-					<em>https://wwww.domain.com</em>
+					<em>https://www.netlify.com/</em>
 				</p>
 			): ''
 		  }
