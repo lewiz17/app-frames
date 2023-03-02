@@ -113,8 +113,8 @@ const App = () => {
         {items.map((item) => {
           return (
             <div className="url-item" key={item.id}>
-              <h2 className="url-title">{item.target_url}</h2>
-              <p className="url-frame">{item.iframe_url}</p>
+              <h2 className="url-title" onClick={() => setTarget(item.target_url)}>{item.target_url}</h2>
+              <p className="url-frame" onClick={() => setIframe(item.iframe_url)}>{item.iframe_url}</p>
               <p className="url-body">
                 Running:{" "}
                 {item.disable === true ? (
@@ -142,7 +142,7 @@ const App = () => {
 				<p className="content-help">
 					valid url patterns:
 					<em>https://*.domain.com/*</em>
-					<em>https://www.netlify.com/</em>
+					<em>https://www.domain.com/</em>
 				</p>
 			): ''
 		  }
